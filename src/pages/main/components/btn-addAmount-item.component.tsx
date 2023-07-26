@@ -80,7 +80,11 @@ export default function BtnAddAmountItem({
       >
         <button
           className={btnamount}
-          style={{ background: dataCompany?.backgroundColor }}
+          style={{
+            background: !dataCompany?.backgroundColor
+              ? '#5B72F2'
+              : dataCompany?.backgroundColor,
+          }}
           onClick={handleRemoveItem}
         >
           -
@@ -89,7 +93,11 @@ export default function BtnAddAmountItem({
         <button
           onClick={handleAddItem}
           className={btnamount}
-          style={{ background: dataCompany?.backgroundColor }}
+          style={{
+            background: !dataCompany?.backgroundColor
+              ? '#5B72F2'
+              : dataCompany?.backgroundColor,
+          }}
         >
           +
         </button>
