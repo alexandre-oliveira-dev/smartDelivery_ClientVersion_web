@@ -30,7 +30,11 @@ export default function Header() {
   return (
     <>
       <header
-        style={{ background: dataCompany?.backgroundColor }}
+        style={{
+          background: !dataCompany?.backgroundColor
+            ? '#5B72F2'
+            : dataCompany?.backgroundColor,
+        }}
         className={header}
       >
         {load ? (
