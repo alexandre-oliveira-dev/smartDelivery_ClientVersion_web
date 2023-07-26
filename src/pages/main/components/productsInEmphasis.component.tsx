@@ -1,9 +1,9 @@
 import { Card, Col, Row, Skeleton, Typography } from 'antd';
 import React, { useContext, useState } from 'react';
 import { createUseStyles } from 'react-jss';
-import { dataCompanyContext } from '../../../contexts/dataCompany.context';
-import { PriceFormater } from '../../../../helpers/priceFormater';
-import BtnAddAmountItem from './btn-addAmount-item.component';
+import { dataCompanyContext } from "../../../contexts/dataCompany.context";
+import BtnAddAmountItem from "./btn-addAmount-item.component";
+import { PriceFormater } from "../../../helpers/priceFormater";
 
 const styles = createUseStyles({
   container: {

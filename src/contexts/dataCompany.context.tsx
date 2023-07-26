@@ -1,13 +1,8 @@
-import React, {
-  useState,
-  createContext,
-  useEffect,
-  SetStateAction,
-} from 'react';
-import { AsUserPropsTypes } from '../../context/dashboard.context';
-import { api } from '../../services/api';
-import { useParams } from 'react-router-dom';
-import { OrdersParams } from '../store/modules/cart.redux';
+import React, { useState, createContext, useEffect, SetStateAction } from "react";
+import { useParams } from "react-router-dom";
+import { OrdersParams } from "../store/modules/cart.redux";
+import { api } from "../service/api";
+import { AsUserPropsTypes } from "../types";
 
 interface PropsOfCompanys {
   dataCompany: AsUserPropsTypes;

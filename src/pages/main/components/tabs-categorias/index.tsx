@@ -1,10 +1,10 @@
 import { Card, Col, Row, Typography } from 'antd';
 import React, { useContext, useMemo, useState } from 'react';
 import { dataCompanyContext } from '../../../../contexts/dataCompany.context';
-import { createUseStyles } from 'react-jss';
-import { PriceFormater } from '../../../../../helpers/priceFormater';
-import BtnAddAmountItem from '../btn-addAmount-item.component';
-import Tab from './tab.component';
+import { createUseStyles } from "react-jss";
+import BtnAddAmountItem from "../btn-addAmount-item.component";
+import Tab from "./tab.component";
+import { PriceFormater } from "../../../../helpers/priceFormater";
 
 const style = createUseStyles({
   card: {
