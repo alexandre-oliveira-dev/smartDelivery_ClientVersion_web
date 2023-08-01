@@ -61,13 +61,19 @@ export default function Tab() {
                     style={
                       current.index === index
                         ? {
-                            background: dataCompany.backgroundColor,
+                            background: !dataCompany.backgroundColor
+                              ? '#5b72f2'
+                              : dataCompany.backgroundColor,
                             height: '2px',
                             display: 'grid',
                             placeItems: 'center',
                             transition: '0.3s ease',
                           }
-                        : { color: dataCompany.backgroundColor }
+                        : {
+                            color: !dataCompany.backgroundColor
+                              ? '#5b72f2'
+                              : dataCompany.backgroundColor,
+                          }
                     }
                   ></span>
                 </Col>

@@ -18,4 +18,7 @@ export interface AsUserPropsTypes {
   ];
   payments_methods?: string[];
   phone?: string;
+  paymentVouncher?: string;
+  pixType?: string;
+  pixKey?: string;
 }

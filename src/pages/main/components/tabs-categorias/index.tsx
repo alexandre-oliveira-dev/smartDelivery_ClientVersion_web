@@ -32,7 +32,7 @@ export default function TabCategoria() {
       index: 0,
       item: dataCompany?.Menu?.map((item) => item.categoria)[0],
     });
-  }, [dataCompany]);
+  }, [dataCompany?.Menu, setCurrent]);
 
   return (
     <>

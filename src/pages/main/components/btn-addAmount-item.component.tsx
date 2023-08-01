@@ -25,8 +25,8 @@ export interface ItemParams {
     description: string;
     amount: string;
   };
-  index: number;
-  companyId: string;
+  index?: number;
+  companyId?: string;
   type?: string;
 }
 
@@ -44,12 +44,13 @@ export default function BtnAddAmountItem({
     const items = JSON.parse(localStorage.getItem('@cart') as string) || [];
     setAmountnumber(
       items
-        .filter((it: any) => it.id === item.id)
+        .filter((it: any) => it.id === item?.id)
         .map((i: any) => i.order[0].qtd)
     );
     setDataCart(items);
-  }, [handleAddItem]);
+  }, [item?.id, setDataCart]);
 
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   function handleAddItem() {
     dispatch({
       type: 'ADD_ITEM',
@@ -57,6 +58,7 @@ export default function BtnAddAmountItem({
       index,
       companyId,
     });
+    window.location.reload();
   }
   function handleRemoveItem() {
     dispatch({
@@ -65,6 +67,7 @@ export default function BtnAddAmountItem({
       index,
       companyId,
     });
+    window.location.reload();
   }
 
   return (

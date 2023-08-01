@@ -13,10 +13,11 @@ export interface OrdersParams {
     }
   ];
   amoutMoney: number;
-  address: string;
-  companyId: string;
+  address?: string;
+  companyId?: string;
   id: string;
   companyMenu?: [];
+  itemDetails: ItemParams;
 }
 
 export default function Cart(
@@ -37,41 +38,52 @@ export default function Cart(
     payment_method: '',
     status: '',
     id: action?.item?.id,
+    itemDetails: {
+      item: {
+        description: action.item?.description,
+        amount: action.item?.amount,
+        categoria: action.item?.categoria,
+        id: action.item?.id,
+        price: action.item?.price,
+        title: action.item?.title,
+        weight: action.item?.weight,
+      },
+    },
   };
   const localstorage: OrdersParams[] =
     JSON.parse(localStorage.getItem('@cart') as string) || [];
 
   switch (action.type) {
     case 'ADD_ITEM': {
-      if (!localstorage.some((item) => item.id === action.item.id)) {
+      if (!localstorage.some((item) => item?.id === action.item?.id)) {
         localstorage.push(order);
         localStorage.setItem('@cart', JSON.stringify(localstorage));
       }
 
       return produce(localstorage, (draft) => {
         const itemindex = draft.findIndex(
-          (data) => data?.id === action.item.id
+          (data) => data?.id === action.item?.id
         );
 
         draft[itemindex].order[0].qtd += 1;
         draft[itemindex].amoutMoney =
-          parseFloat(action.item.price) * draft[itemindex].order[0].qtd;
+          parseFloat(action?.item?.price) * draft[itemindex].order[0]?.qtd;
 
         localStorage.setItem('@cart', JSON.stringify(draft));
       });
     }
     case 'REMOVE_ITEM': {
-      if (!localstorage.some((item) => item.id === action.item.id)) {
+      if (!localstorage.some((item) => item?.id === action.item?.id)) {
         return [];
       }
 
       return produce(localstorage, (draft) => {
         const itemindex = draft.findIndex(
-          (data) => data?.id === action.item.id
+          (data) => data?.id === action.item?.id
         );
-        if (draft[itemindex].order[0].qtd === 1) {
+        if (draft[itemindex].order[0]?.qtd === 1) {
           const newList = localstorage.filter(
-            (item) => item.id !== draft[itemindex].id
+            (item) => item?.id !== draft[itemindex]?.id
           );
           localStorage.setItem('@cart', JSON.stringify(newList));
           return;
@@ -79,7 +91,7 @@ export default function Cart(
 
         draft[itemindex].order[0].qtd -= 1;
         draft[itemindex].amoutMoney =
-          parseFloat(action.item.price) * draft[itemindex].order[0].qtd;
+          parseFloat(action.item?.price) * draft[itemindex].order[0]?.qtd;
 
         localStorage.setItem('@cart', JSON.stringify(draft));
       });

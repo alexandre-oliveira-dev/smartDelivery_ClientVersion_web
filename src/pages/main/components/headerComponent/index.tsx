@@ -61,7 +61,13 @@ export default function Header() {
                   }
                   alt=""
                 ></Image>
-                <Typography.Title style={{ color: '#fff' }} level={4}>
+                <Typography.Title
+                  onClick={() =>
+                    (window.location.href = `/${dataCompany?.name_company}`)
+                  }
+                  style={{ color: '#fff', cursor: 'pointer' }}
+                  level={4}
+                >
                   {dataCompany?.name_company}
                 </Typography.Title>
               </Row>
@@ -75,21 +81,6 @@ export default function Header() {
                     <Typography.Title level={4} style={{ color: '#fff' }}>
                       Meus pedidos
                     </Typography.Title>
-                    <span
-                      style={{
-                        position: 'absolute',
-                        right: '-15px',
-                        color: 'green',
-                        background: '#fff',
-                        width: '17px',
-                        height: '17px',
-                        borderRadius: '50%',
-                        textAlign: 'center',
-                        fontWeight: '600',
-                      }}
-                    >
-                      {dataCart?.length}
-                    </span>
                   </Row>
                 </Link>
                 <Button
