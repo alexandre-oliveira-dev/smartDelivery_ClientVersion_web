@@ -48,7 +48,7 @@ export default function BtnAddAmountItem({
         .map((i: any) => i.order[0].qtd)
     );
     setDataCart(items);
-  }, [item?.id, setDataCart]);
+  }, []);
 
   // eslint-disable-next-line react-hooks/exhaustive-deps
   function handleAddItem() {
