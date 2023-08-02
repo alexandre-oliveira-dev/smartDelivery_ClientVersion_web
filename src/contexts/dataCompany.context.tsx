@@ -1,8 +1,13 @@
-import React, { useState, createContext, useEffect, SetStateAction } from "react";
-import { useParams } from "react-router-dom";
-import { OrdersParams } from "../store/modules/cart.redux";
-import { api } from "../service/api";
-import { AsUserPropsTypes } from "../types";
+import React, {
+  useState,
+  createContext,
+  useEffect,
+  SetStateAction,
+} from 'react';
+import { useParams } from 'react-router-dom';
+import { OrdersParams } from '../store/modules/cart.redux';
+import { api } from '../service/api';
+import { AsUserPropsTypes } from '../types';
 
 interface PropsOfCompanys {
   dataCompany: AsUserPropsTypes;
@@ -38,14 +43,16 @@ export function DataCompanyContextProvider({ children }: any) {
     const localstorage: OrdersParams[] =
       JSON.parse(localStorage.getItem('@cart') as string) || [];
     document.title = name_company;
+    
+    const items = JSON.parse(localStorage.getItem('@cart') as string) || [];
+    setDataCart(items);
+
     setDataCart(localstorage);
     setLoad(true);
     async function LoadDataCompany() {
-      await api
-        .get(`/findbyname?name_company=${name_company}`)
-        .then((data) => {
-          setDataCompany(data.data);
-        });
+      await api.get(`/findbyname?name_company=${name_company}`).then((data) => {
+        setDataCompany(data.data);
+      });
     }
 
     Promise.all([LoadDataCompany()]).finally(() => {
