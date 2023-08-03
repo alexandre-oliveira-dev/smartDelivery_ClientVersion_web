@@ -56,7 +56,7 @@ export function DataCompanyContextProvider({ children }: any) {
     Promise.all([LoadDataCompany()]).finally(() => {
       setLoad(false);
     });
-  }, []);
+  }, [name_company]);
 
   return (
     <dataCompanyContext.Provider
