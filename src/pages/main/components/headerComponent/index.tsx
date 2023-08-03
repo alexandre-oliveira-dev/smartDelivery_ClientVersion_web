@@ -4,6 +4,7 @@ import { createUseStyles } from 'react-jss';
 import { Link } from 'react-router-dom';
 import { FiHelpCircle } from 'react-icons/fi';
 import { dataCompanyContext } from '../../../../contexts/dataCompany.context';
+import '../../../responsiveApp.css';
 
 const styles = createUseStyles({
   header: {
@@ -22,10 +23,15 @@ const styles = createUseStyles({
     justifyContent: 'space-between',
     width: '100%',
   },
+  hiddenNamecompany: {
+    '@media(max-width:500px)': {
+      display: 'none',
+    },
+  },
 });
 export default function Header() {
-  const { header, logo, containerHeader } = styles();
-  const { dataCompany, load, dataCart } = useContext(dataCompanyContext);
+  const { header, logo, containerHeader, hiddenNamecompany } = styles();
+  const { dataCompany, load } = useContext(dataCompanyContext);
 
   return (
     <>
@@ -62,6 +68,7 @@ export default function Header() {
                   alt=""
                 ></Image>
                 <Typography.Title
+                  className={hiddenNamecompany}
                   onClick={() =>
                     (window.location.href = `/${dataCompany?.name_company}`)
                   }
@@ -78,7 +85,11 @@ export default function Header() {
               >
                 <Link to={'#'}>
                   <Row style={{ position: 'relative' }}>
-                    <Typography.Title level={4} style={{ color: '#fff' }}>
+                    <Typography.Title
+                      className="responsivemeusPedidosBtn"
+                      level={4}
+                      style={{ color: '#fff' }}
+                    >
                       Meus pedidos
                     </Typography.Title>
                   </Row>
@@ -90,8 +101,12 @@ export default function Header() {
                     gap: '10px',
                   }}
                 >
-                  <FiHelpCircle color="#000"></FiHelpCircle>
-                  <Typography.Text> Ajuda</Typography.Text>
+                  <Row>
+                    <Typography.Text> Ajuda</Typography.Text>
+                  </Row>
+                  <Row>
+                    <FiHelpCircle color="#000"></FiHelpCircle>
+                  </Row>
                 </Button>
               </Row>
             </Col>

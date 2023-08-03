@@ -1,7 +1,8 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext } from 'react';
 import { dataCompanyContext } from '../../../../contexts/dataCompany.context';
 import { createUseStyles } from 'react-jss';
 import { Col, Row, Typography } from 'antd';
+import '../../../responsiveApp.css';
 
 const style = createUseStyles({
   tab: {
@@ -12,6 +13,9 @@ const style = createUseStyles({
     justifyContent: 'space-evenly',
     alignItems: 'center',
     padding: '10px 0 10px 0',
+    '@media(max-width:500px)': {
+      
+    },
   },
   btntab: {
     background: 'transparent',

@@ -3,6 +3,7 @@ import React, { useContext } from 'react';
 import { createUseStyles } from 'react-jss';
 import { dataCompanyContext } from '../../../contexts/dataCompany.context';
 import { FiSearch } from 'react-icons/fi';
+import '../../responsiveApp.css';
 
 const styles = createUseStyles({
   container: {
@@ -12,9 +13,18 @@ const styles = createUseStyles({
     padding: '0 0 0 100px',
     alignItems: 'center',
     gap: '30px',
+    flexWrap: 'nowrap',
+    '@media(max-width:500px)': {
+      padding: '0',
+      justifyContent: 'center',
+      gap: '10px',
+    },
   },
   selectstyles: {
     width: '200px',
+    '@media(max-width:500px)': {
+      width: '100px',
+    },
   },
 });
 
@@ -36,10 +46,12 @@ export default function FilterComponent() {
       ) : (
         <Row className={container}>
           <Col>
-            <Typography.Title level={4}>Filtrar por:</Typography.Title>
+            <Typography.Title className="responsivefiltrarPorText" level={4}>
+              Filtrar por:
+            </Typography.Title>
           </Col>
           <Col>
-            <Row style={{ gap: '20px' }}>
+            <Row style={{ gap: '20px', flexWrap: 'nowrap' }}>
               <Col>
                 <Select placeholder="Categoria" className={selectstyles}>
                   {categorias?.map(
@@ -61,6 +73,7 @@ export default function FilterComponent() {
               </Col>
               <Col>
                 <Input
+                  className="responsiveinputfilter"
                   prefix={<FiSearch color="silver"></FiSearch>}
                   placeholder="Pesquisar"
                 ></Input>

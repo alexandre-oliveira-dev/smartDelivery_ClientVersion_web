@@ -7,6 +7,7 @@ import { PriceFormater } from '../../helpers/priceFormater';
 import { FiArrowLeft, FiShoppingCart, FiTrash } from 'react-icons/fi';
 import FormPaymentComponent from './formPayment.component';
 import { useHistory } from 'react-router-dom';
+import '../responsiveApp.css'
 
 const styles = createUseStyles({
   container: {
@@ -25,12 +26,21 @@ const styles = createUseStyles({
     width: '100% !important',
     marginTop: '10px',
     transition: '0.3s ease',
+    '@media(max-width:500px)': {
+      
+    }
   },
   contentCard: {
     width: '100% !important',
     justifyContent: 'space-between',
     alignItems: 'center',
     height: '50px',
+    '@media(max-width:500px)': {
+      height: "auto",
+      flexDirection: "column",
+      alignItems: "start",
+      gap:"10px"
+    }
   },
   cardTotal: {
     width: '100% !important',
@@ -63,6 +73,7 @@ export default function CartComponent() {
     <>
       <Row className={container}>
         <Row
+          className="responsiveboxtitlecart"
           style={{
             margin: '2rem 0 2rem 0',
             height: 'min-content',
@@ -74,6 +85,7 @@ export default function CartComponent() {
           }}
         >
           <button
+            className="responsivebtnback"
             onClick={() => history.goBack()}
             style={{
               position: 'absolute',
@@ -82,10 +94,11 @@ export default function CartComponent() {
           >
             <FiArrowLeft
               color={dataCompany?.backgroundColor}
-              size={40}
+              size={30}
             ></FiArrowLeft>
           </button>
           <Typography.Title
+            className="responsivetextmeucarrinho"
             level={2}
             style={{ color: dataCompany?.backgroundColor }}
           >
@@ -127,6 +140,7 @@ export default function CartComponent() {
                           </Typography.Title>
                         </Col>
                         <Col
+                          className="responsiveremovedescription"
                           style={{
                             flex: 1,
 
@@ -144,24 +158,7 @@ export default function CartComponent() {
                             </Typography.Text>
                           </Row>
                         </Col>
-                        <Col
-                          style={{
-                            flex: 1,
 
-                            display: 'flex',
-                            justifyContent: 'flex-start',
-                          }}
-                        >
-                          <Row style={{ gap: 10 }}>
-                            <Typography.Text style={{ color: '#121212' }}>
-                              {' '}
-                              Qtd:{' '}
-                            </Typography.Text>
-                            <Typography.Text style={{ color: 'silver' }}>
-                              {item.order?.[0].qtd}
-                            </Typography.Text>
-                          </Row>
-                        </Col>
                         <Col
                           style={{
                             flex: 1,
@@ -176,7 +173,10 @@ export default function CartComponent() {
                             item={item.itemDetails.item}
                           ></BtnAddAmountItem>
                         </Col>
-                        <Row style={{ flex: '1', gap: '30px' }}>
+                        <Row
+                          style={{ flex: '1', gap: '30px' }}
+                          className="responsiveboxAmountvalue"
+                        >
                           <Col
                             style={{
                               display: 'flex',
@@ -275,6 +275,7 @@ export default function CartComponent() {
             }}
           >
             <Typography.Title
+              className="responsivetitlecartpage"
               level={2}
               style={{ color: dataCompany?.backgroundColor }}
             >

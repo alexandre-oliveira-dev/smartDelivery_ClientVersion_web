@@ -1,14 +1,15 @@
 import { Card, Col, Row, Typography } from 'antd';
-import React, { useContext, useMemo, useState } from 'react';
+import React, { useContext, useMemo } from 'react';
 import { dataCompanyContext } from '../../../../contexts/dataCompany.context';
-import { createUseStyles } from "react-jss";
-import BtnAddAmountItem from "../btn-addAmount-item.component";
-import Tab from "./tab.component";
-import { PriceFormater } from "../../../../helpers/priceFormater";
+import { createUseStyles } from 'react-jss';
+import BtnAddAmountItem from '../btn-addAmount-item.component';
+import Tab from './tab.component';
+import { PriceFormater } from '../../../../helpers/priceFormater';
+import '../../../responsiveApp.css';
 
 const style = createUseStyles({
   card: {
-    width: '100% !important',
+    width: '100%',
     marginTop: '10px',
     transition: '0.3s ease',
   },
@@ -17,6 +18,9 @@ const style = createUseStyles({
     justifyContent: 'space-between',
     alignItems: 'center',
     height: '50px',
+    '@media(max-width:500px)': {
+      height: 'auto',
+    },
   },
 });
 
@@ -44,8 +48,8 @@ export default function TabCategoria() {
           return item.categoria === current.item;
         }).map((item, index) => {
           return (
-            <>
-              <Card className={card} key={index}>
+            <div style={{ width: '100%' }} key={index}>
+              <Card className={card}>
                 <Row className={contentCard}>
                   <Col
                     style={{
@@ -55,6 +59,7 @@ export default function TabCategoria() {
                     }}
                   >
                     <Typography.Title
+                      className="responsivetitleitemtab"
                       level={5}
                       style={{ textTransform: 'capitalize' }}
                     >
@@ -62,6 +67,7 @@ export default function TabCategoria() {
                     </Typography.Title>
                   </Col>
                   <Col
+                    className="responsiveremovedescription"
                     style={{
                       flex: 1,
 
@@ -70,11 +76,17 @@ export default function TabCategoria() {
                     }}
                   >
                     <Row style={{ gap: 10 }}>
-                      <Typography.Text style={{ color: '#121212' }}>
+                      <Typography.Text
+                        style={{ color: '#121212' }}
+                        className="responsivedescriptiontext"
+                      >
                         {' '}
                         Acompanhamentos:{' '}
                       </Typography.Text>
-                      <Typography.Text style={{ color: 'silver' }}>
+                      <Typography.Text
+                        style={{ color: 'silver' }}
+                        className="responsivedescriptiontext"
+                      >
                         {item.description}
                       </Typography.Text>
                     </Row>
@@ -93,7 +105,10 @@ export default function TabCategoria() {
                       item={item}
                     ></BtnAddAmountItem>
                   </Col>
-                  <Row style={{ flex: '1', gap: '30px' }}>
+                  <Row
+                    style={{ flex: '1', gap: '30px' }}
+                    className="responsivepriceandDetailsbtn"
+                  >
                     <Col
                       style={{
                         display: 'flex',
@@ -130,7 +145,7 @@ export default function TabCategoria() {
                   </Row>
                 </Row>
               </Card>
-            </>
+            </div>
           );
         })}
       </Row>

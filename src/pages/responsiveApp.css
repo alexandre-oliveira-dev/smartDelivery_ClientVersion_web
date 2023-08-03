@@ -1,0 +1,58 @@
+@media (max-width: 500px) {
+  .responsivemeusPedidosBtn {
+    font-size: 14px !important;
+  }
+  .responsivefiltrarPorText,
+  .responsivedescriptiontext:nth-child(1) {
+    display: none !important;
+  }
+  .responsiveinputfilter {
+    max-width: 100px !important;
+  }
+  .responsivetitleEmDestaque {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
+  .responsivetabcategorias {
+    width: 100% !important;
+  }
+
+  .responsivetitleitemtab,
+  .responsivedescriptiontext {
+    font-size: 12px !important;
+  }
+
+  .boxresponsivedescriptiontext,
+  .responsiveboxAmountvalue {
+    flex-wrap: nowrap !important;
+  }
+  .responsiveboxtitlecart {
+    width: 100% !important;
+    flex-wrap: nowrap !important;
+  }
+  .responsivetextmeucarrinho {
+    font-size: 20px !important;
+  }
+  .responsivebtnback {
+    left: 20px !important;
+  }
+
+  .responsivetitlecartpage {
+    font-size: 20px !important;
+  }
+  .responsivepriceandDetailsbtn {
+    flex-wrap: nowrap !important;
+    flex: 2;
+  }
+}
+
+@media (max-width: 900px) {
+  .responsiveremovedescription {
+    display: none !important;
+  }
+  .responsivefiltrarPorText {
+    font-size: 15px !important;
+    width: max-content !important;
+  }
+}

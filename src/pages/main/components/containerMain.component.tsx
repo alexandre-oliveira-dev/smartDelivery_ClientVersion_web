@@ -5,6 +5,7 @@ import { dataCompanyContext } from '../../../contexts/dataCompany.context';
 import ProductInEmphasisComponent from './productsInEmphasis.component';
 import TabCategoria from './tabs-categorias';
 import { FiShoppingCart } from 'react-icons/fi';
+import '../../responsiveApp.css';
 
 const styles = createUseStyles({
   container: {
@@ -75,6 +76,7 @@ export default function ContainerMain() {
     <>
       <Row className={container}>
         <Row
+          className="responsivetitleEmDestaque"
           style={{
             margin: '2rem 0 2rem 0',
             height: 'min-content',
@@ -93,7 +95,10 @@ export default function ContainerMain() {
         <Row style={{ width: '80%' }}>
           <Divider dashed></Divider>
         </Row>
-        <Row style={{ width: '80%', marginBottom: '30px' }}>
+        <Row
+          className="responsivetabcategorias"
+          style={{ width: '80%', marginBottom: '30px' }}
+        >
           <TabCategoria></TabCategoria>
         </Row>
         <ButtonCart></ButtonCart>
