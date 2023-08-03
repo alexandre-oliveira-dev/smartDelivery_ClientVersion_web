@@ -40,14 +40,12 @@ export function DataCompanyContextProvider({ children }: any) {
   });
 
   useEffect(() => {
+    document.title = name_company;
+
     const localstorage: OrdersParams[] =
       JSON.parse(localStorage.getItem('@cart') as string) || [];
-    document.title = name_company;
-    
-    const items = JSON.parse(localStorage.getItem('@cart') as string) || [];
-    setDataCart(items);
-
     setDataCart(localstorage);
+    
     setLoad(true);
     async function LoadDataCompany() {
       await api.get(`/findbyname?name_company=${name_company}`).then((data) => {
