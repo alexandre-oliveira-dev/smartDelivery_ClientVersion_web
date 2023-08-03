@@ -37,7 +37,7 @@ export default function ProductInEmphasisComponent() {
         ></Skeleton>
       ) : (
         <Row className={container}>
-          {dataCompany.Menu.slice(0, 4).map(
+          {dataCompany.Menu?.slice(0, 4).map(
             (item: (typeof dataCompany.Menu)[0], index: number) => {
               return (
                 <Card bordered key={index} className={card}>
