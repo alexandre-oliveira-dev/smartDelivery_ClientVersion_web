@@ -35,19 +35,18 @@ export default function BtnAddAmountItem({
   companyId,
   index,
 }: ItemParams) {
-  const { dataCompany } = useContext(dataCompanyContext);
+  const { dataCompany, dataCart } = useContext(dataCompanyContext);
   const { btnamount } = style();
   const dispatch = useDispatch();
-  const [amountnumber, setAmountnumber] = useState(0);
+  const [amountnumber, setAmountnumber] = useState<number[]>([]);
 
   useEffect(() => {
-    const items = JSON.parse(localStorage.getItem('@cart') as string) || [];
     setAmountnumber(
-      items
+      dataCart
         .filter((it: any) => it.id === item?.id)
         .map((i: any) => i.order[0].qtd)
     );
-  }, []);
+  }, [dataCart, item?.id]);
 
   // eslint-disable-next-line react-hooks/exhaustive-deps
   function handleAddItem() {

@@ -4,8 +4,9 @@ import { dataCompanyContext } from '../../contexts/dataCompany.context';
 import { createUseStyles } from 'react-jss';
 import BtnAddAmountItem from '../main/components/btn-addAmount-item.component';
 import { PriceFormater } from '../../helpers/priceFormater';
-import { FiShoppingCart, FiTrash } from 'react-icons/fi';
+import { FiArrowLeft, FiShoppingCart, FiTrash } from 'react-icons/fi';
 import FormPaymentComponent from './formPayment.component';
+import { useHistory } from 'react-router-dom';
 
 const styles = createUseStyles({
   container: {
@@ -44,6 +45,7 @@ export default function CartComponent() {
   const { dataCompany, dataCart } = useContext(dataCompanyContext);
   const { container, contentItems, card, contentCard, cardTotal } = styles();
   const format = new PriceFormater();
+  const history = useHistory();
 
   const valores = dataCart.map((item) => item.amoutMoney);
   let soma = 0;
@@ -66,8 +68,23 @@ export default function CartComponent() {
             height: 'min-content',
             alignItems: 'center',
             gap: '10px',
+            position: 'relative',
+            width: '100%',
+            justifyContent: 'center',
           }}
         >
+          <button
+            onClick={() => history.goBack()}
+            style={{
+              position: 'absolute',
+              left: 70,
+            }}
+          >
+            <FiArrowLeft
+              color={dataCompany?.backgroundColor}
+              size={40}
+            ></FiArrowLeft>
+          </button>
           <Typography.Title
             level={2}
             style={{ color: dataCompany?.backgroundColor }}
