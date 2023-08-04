@@ -98,7 +98,11 @@ export default function ProductInEmphasisComponent() {
                           marginTop: '10px',
                         }}
                       >
-                        <Typography.Link href="">ver detalhes</Typography.Link>
+                        <Typography.Link
+                          href={`/${dataCompany?.name_company}/detalhes/${item.id}`}
+                        >
+                          ver detalhes
+                        </Typography.Link>
                       </Row>
                     </Col>
                   </Card>

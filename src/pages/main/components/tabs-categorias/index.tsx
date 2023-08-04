@@ -120,6 +120,7 @@ export default function TabCategoria() {
                           color: dataCompany.backgroundColor,
                           textDecoration: 'underline',
                         }}
+                        href={`/${dataCompany?.name_company}/detalhes/${item.id}`}
                       >
                         Detalhes
                       </Typography.Link>

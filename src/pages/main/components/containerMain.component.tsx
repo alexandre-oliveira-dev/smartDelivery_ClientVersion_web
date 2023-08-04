@@ -4,8 +4,8 @@ import { createUseStyles } from 'react-jss';
 import { dataCompanyContext } from '../../../contexts/dataCompany.context';
 import ProductInEmphasisComponent from './productsInEmphasis.component';
 import TabCategoria from './tabs-categorias';
-import { FiShoppingCart } from 'react-icons/fi';
 import '../../responsiveApp.css';
+import ButtonCart from '../../common/buttonCartComponent';
 
 const styles = createUseStyles({
   container: {
@@ -16,61 +16,11 @@ const styles = createUseStyles({
     display: 'flex',
     flexDirection: 'column',
   },
-  buttonCart: {
-    position: 'fixed',
-    bottom: '50px',
-    width: '200px',
-    height: '40px',
-    color: '#fff',
-    fontSize: '20px',
-    borderRadius: '10px',
-    gap: '10px',
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    transition: '0.3s ease',
-    '&:hover': {
-      padding: '10px',
-    },
-  },
 });
 
 export default function ContainerMain() {
-  const { container, buttonCart } = styles();
-  const { dataCompany, dataCart } = useContext(dataCompanyContext);
-  const ButtonCart = () => {
-    return (
-      <>
-        <button
-          onClick={() =>
-            (window.location.href = `/${dataCompany?.name_company}/meu carrinho`)
-          }
-          className={buttonCart}
-          style={{
-            background: !dataCompany.backgroundColor
-              ? '#5b72f2'
-              : dataCompany.backgroundColor,
-          }}
-        >
-          <Typography.Text style={{ color: '#fff', fontSize: '20px' }}>
-            Carrinho
-          </Typography.Text>
-
-          <Row
-            style={{
-              gap: '5px',
-              alignItems: 'center',
-            }}
-          >
-            <FiShoppingCart size={20} color="#fff"></FiShoppingCart>
-            <Typography.Text style={{ color: '#fff', fontSize: '15px' }}>
-              {dataCart.length}
-            </Typography.Text>
-          </Row>
-        </button>
-      </>
-    );
-  };
+  const { container } = styles();
+  const { dataCompany } = useContext(dataCompanyContext);
 
   return (
     <>

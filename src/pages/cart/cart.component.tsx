@@ -69,6 +69,7 @@ export default function CartComponent() {
     localStorage.setItem('@cart', JSON.stringify(arrayFilter));
     window.location.reload();
   }
+
   return (
     <>
       <Row className={container}>
@@ -188,6 +189,7 @@ export default function CartComponent() {
                                 color: dataCompany.backgroundColor,
                                 textDecoration: 'underline',
                               }}
+                              href={`/${dataCompany?.name_company}/detalhes/${item.id}`}
                             >
                               Detalhes
                             </Typography.Link>

@@ -81,7 +81,7 @@ export default function Header() {
             </Col>
             <Col>
               <Row
-                style={{ alignItems: 'center', gap: '20px', height: '100%' }}
+                style={{ alignItems: 'center', gap: '10px', height: '100%' }}
               >
                 <Link to={'#'}>
                   <Row style={{ position: 'relative' }}>
@@ -94,20 +94,34 @@ export default function Header() {
                     </Typography.Title>
                   </Row>
                 </Link>
-                <Button
-                  style={{
-                    display: 'flex',
-                    alignContent: 'center',
-                    gap: '10px',
-                  }}
-                >
-                  <Row>
-                    <Typography.Text> Ajuda</Typography.Text>
-                  </Row>
-                  <Row>
-                    <FiHelpCircle color="#000"></FiHelpCircle>
-                  </Row>
-                </Button>
+                {window.screen.width > 500 ? (
+                  <Button
+                    style={{
+                      display: 'flex',
+                      alignContent: 'center',
+                      gap: '10px',
+                    }}
+                  >
+                    <Row>
+                      <Typography.Text> Ajuda</Typography.Text>
+                    </Row>
+                    <Row>
+                      <FiHelpCircle color="#000"></FiHelpCircle>
+                    </Row>
+                  </Button>
+                ) : (
+                  <Button
+                    title="Ajuda"
+                    type="text"
+                    style={{
+                      display: 'flex',
+                      alignContent: 'center',
+                      gap: '10px',
+                    }}
+                  >
+                    <FiHelpCircle size={20} color="#fff"></FiHelpCircle>
+                  </Button>
+                )}
               </Row>
             </Col>
           </Row>

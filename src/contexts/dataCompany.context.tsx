@@ -18,8 +18,9 @@ interface PropsOfCompanys {
   current: any;
   dataCart: OrdersParams[];
 }
-interface UrlParams {
+export interface UrlParams {
   name_company: string;
+  id: string;
 }
 
 export const dataCompanyContext = createContext({} as PropsOfCompanys);
