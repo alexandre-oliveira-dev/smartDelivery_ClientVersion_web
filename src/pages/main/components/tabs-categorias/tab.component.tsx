@@ -14,7 +14,20 @@ const style = createUseStyles({
     alignItems: 'center',
     padding: '10px 0 10px 0',
     '@media(max-width:500px)': {
-      
+      width: '100vw',
+      overflowX: 'auto',
+      padding: '0 20px 0 20px',
+      justifyContent: 'flex-start',
+      gap: '10px',
+      '&::-webkit-scrollbar ': {
+        width: '100% !important',
+        height: '2px !important',
+        background: 'transparent !important',
+      },
+      '&::-webkit-scrollbar-thumb': {
+        background: '#5b72f2 !important',
+        borderRadius: '10px !important',
+      },
     },
   },
   btntab: {
@@ -32,12 +45,21 @@ const style = createUseStyles({
       padding: '5px',
       borderRadius: '4px',
     },
+    '@media(max-width:500px)': {
+      textAlign: 'center',
+      width: 'max-content',
+    },
+  },
+  responsiveColTab: {
+    '@media(max-width:500px)': {
+      flex: 1,
+    },
   },
 });
 
 export default function Tab() {
   const { dataCompany, current, setCurrent } = useContext(dataCompanyContext);
-  const { tab, btntab } = style();
+  const { tab, btntab, responsiveColTab } = style();
   const cat = dataCompany?.Menu?.map(
     (item: { categoria: string }) => item.categoria
   ) as [];
@@ -52,7 +74,7 @@ export default function Tab() {
           .map((item: any, index) => {
             return (
               <>
-                <Col key={index}>
+                <Col key={index} className={responsiveColTab}>
                   <button
                     className={btntab}
                     onClick={() => {

@@ -116,15 +116,18 @@ export default function CartComponent() {
           </Row>
           <Col>
             {dataCart.length === 0 ? (
-              <Typography.Title level={2}>Carrinho vaizo! </Typography.Title>
+              <Typography.Title level={2}>Carrinho vazio! </Typography.Title>
             ) : (
               ''
             )}
             {dataCart.map((item, index) => {
               return (
                 <>
-                  <Row style={{ position: 'relative', alignItems: 'center' }}>
-                    <Card className={card} key={item.id}>
+                  <Row
+                    key={item.id}
+                    style={{ position: 'relative', alignItems: 'center' }}
+                  >
+                    <Card className={card}>
                       <Row className={contentCard}>
                         <Col
                           style={{

@@ -15,8 +15,17 @@ const styles = createUseStyles({
       flexWrap: 'nowrap',
       width: '100vw',
       gap: '20px',
-      padding: '0 20px 0 20px',
+      padding: '0 20px 5px 20px',
       overflowX: 'auto !important',
+      '&::-webkit-scrollbar ': {
+        width: '100% !important',
+        height: '2px !important',
+        background: 'transparent !important',
+      },
+      '&::-webkit-scrollbar-thumb': {
+        background: '#5b72f2 !important',
+        borderRadius: '10px !important',
+      },
     },
   },
   card: {
