@@ -6,12 +6,10 @@ export interface OrdersParams {
   amount: number;
   payment_method: string;
   status: string;
-  order: [
-    {
-      item: string;
-      qtd: number;
-    }
-  ];
+  order: {
+    item: string;
+    qtd: number;
+  };
   amoutMoney: number;
   address?: string;
   companyId?: string;
@@ -25,12 +23,12 @@ export default function Cart(
   action: ItemParams | AnyAction
 ) {
   const order: OrdersParams = {
-    order: [
+    order: 
       {
         item: action.item?.title,
         qtd: 0,
       },
-    ],
+    
     address: '',
     amount: Number(action?.item?.amount),
     amoutMoney: parseFloat(action?.item?.price),
@@ -65,9 +63,9 @@ export default function Cart(
           (data) => data?.id === action.item?.id
         );
 
-        draft[itemindex].order[0].qtd += 1;
+        draft[itemindex].order.qtd += 1;
         draft[itemindex].amoutMoney =
-          parseFloat(action?.item?.price) * draft[itemindex].order[0]?.qtd;
+          parseFloat(action?.item?.price) * draft[itemindex].order?.qtd;
 
         localStorage.setItem('@cart', JSON.stringify(draft));
       });
@@ -81,7 +79,7 @@ export default function Cart(
         const itemindex = draft.findIndex(
           (data) => data?.id === action.item?.id
         );
-        if (draft[itemindex].order[0]?.qtd === 1) {
+        if (draft[itemindex].order?.qtd === 1) {
           const newList = localstorage.filter(
             (item) => item?.id !== draft[itemindex]?.id
           );
@@ -89,9 +87,9 @@ export default function Cart(
           return;
         }
 
-        draft[itemindex].order[0].qtd -= 1;
+        draft[itemindex].order.qtd -= 1;
         draft[itemindex].amoutMoney =
-          parseFloat(action.item?.price) * draft[itemindex].order[0]?.qtd;
+          parseFloat(action.item?.price) * draft[itemindex].order?.qtd;
 
         localStorage.setItem('@cart', JSON.stringify(draft));
       });

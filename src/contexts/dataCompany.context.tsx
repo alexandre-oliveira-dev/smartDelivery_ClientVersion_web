@@ -12,9 +12,11 @@ import { AsUserPropsTypes } from '../types';
 interface PropsOfCompanys {
   dataCompany: AsUserPropsTypes;
   setLoad: React.Dispatch<SetStateAction<boolean>>;
+  setTotalMoney: React.Dispatch<SetStateAction<string>>;
   setCurrent: React.Dispatch<SetStateAction<any>>;
   setDataCart: React.Dispatch<SetStateAction<OrdersParams[]>>;
   load: boolean;
+  totalMoney: string;
   current: any;
   dataCart: OrdersParams[];
 }
@@ -32,6 +34,7 @@ export function DataCompanyContextProvider({ children }: any) {
   const [load, setLoad] = useState(false);
   const [dataCart, setDataCart] = useState<OrdersParams[]>([]);
   const { name_company } = useParams<UrlParams>();
+  const [totalMoney, setTotalMoney] = useState<string>('0');
   const [current, setCurrent] = useState<{
     item: string;
     index: number;
@@ -46,7 +49,7 @@ export function DataCompanyContextProvider({ children }: any) {
     const localstorage: OrdersParams[] =
       JSON.parse(localStorage.getItem('@cart') as string) || [];
     setDataCart(localstorage);
-    
+
     setLoad(true);
     async function LoadDataCompany() {
       await api.get(`/findbyname?name_company=${name_company}`).then((data) => {
@@ -69,6 +72,8 @@ export function DataCompanyContextProvider({ children }: any) {
         setDataCart,
         current,
         setCurrent,
+        setTotalMoney,
+        totalMoney,
       }}
     >
       {children}

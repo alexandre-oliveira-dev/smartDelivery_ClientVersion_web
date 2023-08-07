@@ -132,7 +132,7 @@ export default function TabCategoria() {
                       }}
                     >
                       <Typography.Title level={5} style={{ color: '#04B400' }}>
-                        {!dataCart.map((item) => item.order[0].qtd)[
+                        {!dataCart.map((item) => item.order.qtd)[
                           dataCart.findIndex((i) => i.id === item.id)
                         ]
                           ? format.formater({ price: item.price })

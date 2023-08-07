@@ -83,7 +83,7 @@ export default function ProductInEmphasisComponent() {
                             fontSize: '20px',
                           }}
                         >
-                          {!dataCart.map((item) => item.order[0].qtd)[
+                          {!dataCart.map((item) => item.order.qtd)[
                             dataCart.findIndex((i) => i.id === item.id)
                           ]
                             ? format.formater({ price: item.price })

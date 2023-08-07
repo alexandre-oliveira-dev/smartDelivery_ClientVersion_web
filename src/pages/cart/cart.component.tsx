@@ -52,7 +52,8 @@ const styles = createUseStyles({
 });
 
 export default function CartComponent() {
-  const { dataCompany, dataCart } = useContext(dataCompanyContext);
+  const { dataCompany, dataCart, setTotalMoney } =
+    useContext(dataCompanyContext);
   const { container, contentItems, card, contentCard, cardTotal } = styles();
   const format = new PriceFormater();
   const history = useHistory();
@@ -63,6 +64,7 @@ export default function CartComponent() {
     soma += valores[i];
   }
   const total = soma.toString();
+  setTotalMoney(total);
 
   function handleDeleteItem(id: string) {
     const arrayFilter = dataCart.filter((item) => item.id !== id);
@@ -140,7 +142,7 @@ export default function CartComponent() {
                             level={5}
                             style={{ textTransform: 'capitalize' }}
                           >
-                            {item.order?.[0].item}
+                            {item.order?.item}
                           </Typography.Title>
                         </Col>
                         <Col
@@ -208,7 +210,7 @@ export default function CartComponent() {
                                 level={5}
                                 style={{ color: '#04B400' }}
                               >
-                                {!dataCart.map((item) => item.order[0].qtd)[
+                                {!dataCart.map((item) => item.order?.qtd)[
                                   dataCart.findIndex((i) => i.id === item.id)
                                 ]
                                   ? format.formater({

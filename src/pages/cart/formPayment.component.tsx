@@ -1,13 +1,83 @@
-import { Button, Card, Col, Form, Input, Row, Select, Typography } from 'antd';
+import {
+  Button,
+  Card,
+  Col,
+  Form,
+  Input,
+  Row,
+  Select,
+  Spin,
+  Typography,
+} from 'antd';
 import FormItem from 'antd/es/form/FormItem';
 import React, { useContext, useState } from 'react';
 import { dataCompanyContext } from '../../contexts/dataCompany.context';
 import PixInformations from './pixInformations.component';
+import { api } from '../../service/api';
+import { toast } from 'react-toastify';
 
 export default function FormPaymentComponent() {
-  const { dataCompany } = useContext(dataCompanyContext);
+  const { dataCompany, dataCart, totalMoney } = useContext(dataCompanyContext);
   const [form] = Form.useForm();
   const [paymentType, setPaymentType] = useState('');
+  const [load, setLoad] = useState(false);
+
+  async function handleCreateOrder() {
+    setLoad(true);
+    const fieldValues: {
+      name: string;
+      phone: string;
+      email: string;
+      address: string;
+      paymentMethod: string;
+    } = form.getFieldsValue();
+
+    if (
+      !fieldValues?.name ||
+      !fieldValues?.email ||
+      !fieldValues?.phone ||
+      !fieldValues?.address ||
+      !fieldValues?.paymentMethod
+    ) {
+      toast.info('Preencha todos os campos!');
+      setLoad(false);
+      return;
+    }
+    await api
+      .post('/clients', {
+        name: fieldValues?.name,
+        email: fieldValues?.email,
+        address: fieldValues?.address,
+        phone: fieldValues?.phone,
+      })
+      .then(async (response) => {
+        await api
+          .post('orders', {
+            payment_method: fieldValues?.paymentMethod,
+            companiesId: dataCompany?.id,
+            clientsId: response?.data.id,
+            address: fieldValues?.address,
+            amoutMoney: totalMoney,
+            status: 'preparando',
+            order: dataCart.map((item) => item.order),
+            paymentVoucher: '',
+            amount: String(dataCart.length),
+          })
+          .then((data) => {
+            setLoad(false);
+            toast.success('Pedido realizado com sucesso!');
+            localStorage.removeItem('@cart');
+            setTimeout(() => {
+              window.location.href = `/meusPedidos/${data.data.id}`;
+            }, 2000);
+          });
+      })
+      .catch(() => {
+        toast.error('Ops, tente novamente! ou mande mensagem para nos!');
+        setLoad(false);
+      });
+  }
+
   return (
     <>
       <Card bodyStyle={{ width: '100%' }}>
@@ -23,6 +93,14 @@ export default function FormPaymentComponent() {
               <Input
                 style={{ background: '#F0F0F0', height: '40px' }}
                 placeholder="Telefone"
+              ></Input>
+            </FormItem>
+          </Row>
+          <Row style={{ width: '100%', gap: '10px' }}>
+            <FormItem style={{ flex: 1 }} name={'email'}>
+              <Input
+                style={{ background: '#F0F0F0', height: '40px' }}
+                placeholder="E-mail"
               ></Input>
             </FormItem>
           </Row>
@@ -62,7 +140,9 @@ export default function FormPaymentComponent() {
             </Col>
           </Row>
           <Row>
-            <Button>Finalizar</Button>
+            <Button onClick={handleCreateOrder}>
+              {load ? <Spin></Spin> : 'Finalizar'}
+            </Button>
           </Row>
         </Form>
       </Card>

@@ -44,7 +44,7 @@ export default function BtnAddAmountItem({
     setAmountnumber(
       dataCart
         .filter((it: any) => it.id === item?.id)
-        .map((i: any) => i.order[0].qtd)
+        .map((i: any) => i.order.qtd)
     );
   }, [dataCart, item?.id]);
 
