@@ -1,7 +1,6 @@
 import React, { useContext } from 'react';
 import { Button, Col, Image, Row, Skeleton, Typography } from 'antd';
 import { createUseStyles } from 'react-jss';
-import { Link } from 'react-router-dom';
 import { FiHelpCircle } from 'react-icons/fi';
 import { dataCompanyContext } from '../../../../contexts/dataCompany.context';
 import '../../../responsiveApp.css';
@@ -32,7 +31,7 @@ const styles = createUseStyles({
 export default function Header() {
   const { header, logo, containerHeader, hiddenNamecompany } = styles();
   const { dataCompany, load } = useContext(dataCompanyContext);
-
+  const OrderId = JSON.parse(localStorage.getItem('@OrderId') as any);
   return (
     <>
       <header
@@ -83,17 +82,16 @@ export default function Header() {
               <Row
                 style={{ alignItems: 'center', gap: '10px', height: '100%' }}
               >
-                <Link to={'#'}>
-                  <Row style={{ position: 'relative' }}>
-                    <Typography.Title
-                      className="responsivemeusPedidosBtn"
-                      level={4}
-                      style={{ color: '#fff' }}
-                    >
-                      Meus pedidos
-                    </Typography.Title>
-                  </Row>
-                </Link>
+                <Row style={{ position: 'relative' }}>
+                  <Typography.Link
+                    className="responsivemeusPedidosBtn"
+                    style={{ color: '#fff' }}
+                    href={`/${dataCompany?.name_company}/meusPedidos/${OrderId}`}
+                  >
+                    Meus pedidos
+                  </Typography.Link>
+                </Row>
+
                 {window.screen.width > 500 ? (
                   <Button
                     style={{

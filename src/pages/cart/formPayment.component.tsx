@@ -22,8 +22,8 @@ export default function FormPaymentComponent() {
   const [paymentType, setPaymentType] = useState('');
   const [load, setLoad] = useState(false);
 
+
   async function handleCreateOrder() {
-    setLoad(true);
     const fieldValues: {
       name: string;
       phone: string;
@@ -43,6 +43,17 @@ export default function FormPaymentComponent() {
       setLoad(false);
       return;
     }
+    const hasPaymentVouncher: boolean =
+      JSON.parse(localStorage.getItem('@@@') as any) || false;
+
+    if (
+      fieldValues?.paymentMethod === 'pix' ||
+      (fieldValues?.paymentMethod === 'Pix' && !hasPaymentVouncher)
+    ) {
+      toast.info('Envie o comprovante para realizar o pedido!');
+      return;
+    }
+    setLoad(true);
     await api
       .post('/clients', {
         name: fieldValues?.name,
@@ -67,8 +78,13 @@ export default function FormPaymentComponent() {
             setLoad(false);
             toast.success('Pedido realizado com sucesso!');
             localStorage.removeItem('@cart');
+            localStorage.removeItem('@@@');
+            localStorage.setItem(
+              '@OrderId',
+              JSON.stringify(String(data.data.id))
+            );
             setTimeout(() => {
-              window.location.href = `/meusPedidos/${data.data.id}`;
+              window.location.href = `/${dataCompany?.name_company}/meusPedidos/${data.data.id}`;
             }, 2000);
           });
       })

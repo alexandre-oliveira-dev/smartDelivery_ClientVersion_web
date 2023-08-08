@@ -1,4 +1,4 @@
-import { Button, Col, Input, Row, Typography } from 'antd';
+import { Button, Col, Row, Typography } from 'antd';
 import React, { useContext } from 'react';
 import { dataCompanyContext } from '../../contexts/dataCompany.context';
 import { MdPix } from 'react-icons/md';
@@ -7,6 +7,10 @@ import { IoLogoWhatsapp } from 'react-icons/io';
 
 export default function PixInformations() {
   const { dataCompany } = useContext(dataCompanyContext);
+
+  function handleSendMessage() {
+    localStorage.setItem('@@@', JSON.stringify(true));
+  }
   return (
     <>
       <Col>
@@ -36,15 +40,15 @@ export default function PixInformations() {
           </Col>
           <Col>
             <Row style={{ flexWrap: 'nowrap', gap: '20px' }}>
-              <Input type="file" placeholder="Anexar comprovante"></Input>
+              {/*<Input type="file" placeholder="Anexar comprovante"></Input>*/}
               Ou
-              <Button>
+              <Button onClick={handleSendMessage}>
                 Enviar <IoLogoWhatsapp></IoLogoWhatsapp>
               </Button>
             </Row>
           </Col>
         </Row>
-        <Col style={{ width: '100%' ,marginTop:"20px"}}>
+        <Col style={{ width: '100%', marginTop: '20px' }}>
           <Typography.Title level={5}>Atenção</Typography.Title>
           <Typography.Text>
             O pedido só será realizado mediante o envio ou anexo do comprovante
