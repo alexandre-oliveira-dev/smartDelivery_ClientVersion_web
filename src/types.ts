@@ -21,4 +21,14 @@ export interface AsUserPropsTypes {
   paymentVouncher?: string;
   pixType?: string;
   pixKey?: string;
+  daysOfWeeks?: [
+    {
+      day: {
+        d: number;
+        name: string;
+      };
+      open: string;
+      close: string;
+    }
+  ];
 }

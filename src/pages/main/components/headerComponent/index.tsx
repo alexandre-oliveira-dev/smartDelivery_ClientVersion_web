@@ -1,9 +1,11 @@
 import React, { useContext } from 'react';
-import { Button, Col, Image, Row, Skeleton, Typography } from 'antd';
+import { Button, Col, Image, Row, Skeleton, Tag, Typography } from 'antd';
 import { createUseStyles } from 'react-jss';
 import { FiHelpCircle } from 'react-icons/fi';
 import { dataCompanyContext } from '../../../../contexts/dataCompany.context';
 import '../../../responsiveApp.css';
+import './pulseAnimation.css';
+import dayjs from 'dayjs';
 
 const styles = createUseStyles({
   header: {
@@ -30,8 +32,29 @@ const styles = createUseStyles({
 });
 export default function Header() {
   const { header, logo, containerHeader, hiddenNamecompany } = styles();
-  const { dataCompany, load } = useContext(dataCompanyContext);
+  const { dataCompany, load, setIsClosed } = useContext(dataCompanyContext);
   const OrderId = JSON.parse(localStorage.getItem('@OrderId') as any);
+  const toDay = dayjs().get('day');
+
+  const indexToday = dataCompany?.daysOfWeeks?.findIndex(
+    (item) => item.day.d === toDay
+  ) as number;
+
+  const openHors = dataCompany?.daysOfWeeks?.[indexToday]?.open?.slice(
+    0,
+    2
+  ) as string;
+  const closeHors = dataCompany?.daysOfWeeks?.[indexToday]?.close?.slice(
+    0,
+    2
+  ) as string;
+
+  const currentHors = dayjs(new Date()).get('hour');
+  const currentMin = dayjs(new Date()).get('minute');
+
+  if (currentHors > parseInt(closeHors) && currentMin > 0) {
+    setIsClosed(true);
+  }
   return (
     <>
       <header
@@ -76,6 +99,40 @@ export default function Header() {
                 >
                   {dataCompany?.name_company}
                 </Typography.Title>
+
+                <Row>
+                  {dataCompany?.daysOfWeeks?.[indexToday]?.day?.d === toDay &&
+                  currentHors > parseInt(openHors) &&
+                  currentHors < parseInt(closeHors) ? (
+                    <Row style={{ gap: '10px', alignItems: 'center' }}>
+                      {' '}
+                      <span className="pulse"></span>
+                      <Tag color="green" style={{ fontWeight: 'bold' }}>
+                        Estamos abertos!
+                      </Tag>
+                    </Row>
+                  ) : (
+                    <Row>
+                      {currentHors > parseInt(closeHors) && currentMin > 0 ? (
+                        <Tag color="red" style={{ fontWeight: 'bold' }}>
+                          Estamos Fechado no momento Abre amanhâ as:{' '}
+                          {
+                            dataCompany?.daysOfWeeks?.[
+                              indexToday === 6 ? 0 : indexToday + 1
+                            ]?.open
+                          }
+                        </Tag>
+                      ) : currentHors < parseInt(openHors) ? (
+                        <Tag color="red" style={{ fontWeight: 'bold' }}>
+                          Estamos Fechado no momento Abriremos as:{' '}
+                          {dataCompany?.daysOfWeeks?.[indexToday]?.open}
+                        </Tag>
+                      ) : (
+                        ''
+                      )}
+                    </Row>
+                  )}
+                </Row>
               </Row>
             </Col>
             <Col>

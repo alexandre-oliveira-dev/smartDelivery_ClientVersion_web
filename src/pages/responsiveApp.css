@@ -44,6 +44,7 @@
   .responsivepriceandDetailsbtn {
     flex-wrap: nowrap !important;
     flex: 2 !important;
+    color: #00000041;
   }
 }
 

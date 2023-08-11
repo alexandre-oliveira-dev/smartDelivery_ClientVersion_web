@@ -6,6 +6,7 @@ import ProductInEmphasisComponent from './productsInEmphasis.component';
 import TabCategoria from './tabs-categorias';
 import '../../responsiveApp.css';
 import ButtonCart from '../../common/buttonCartComponent';
+import dayjs from 'dayjs';
 
 const styles = createUseStyles({
   container: {
@@ -20,10 +21,22 @@ const styles = createUseStyles({
 
 export default function ContainerMain() {
   const { container } = styles();
-  const { dataCompany } = useContext(dataCompanyContext);
+  const { dataCompany, isClosed } = useContext(dataCompanyContext);
 
   return (
     <>
+      {isClosed && (
+        <span
+          style={{
+            width: '100%',
+            height: '100vh',
+            background: '#00000041',
+            backdropFilter: 'blur(10px)',
+            position: 'absolute',
+            zIndex: '10000',
+          }}
+        ></span>
+      )}
       <Row className={container}>
         <Row
           className="responsivetitleEmDestaque"

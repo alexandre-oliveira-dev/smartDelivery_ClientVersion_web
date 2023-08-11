@@ -14,8 +14,10 @@ interface PropsOfCompanys {
   setLoad: React.Dispatch<SetStateAction<boolean>>;
   setTotalMoney: React.Dispatch<SetStateAction<string>>;
   setCurrent: React.Dispatch<SetStateAction<any>>;
+  setIsClosed: React.Dispatch<SetStateAction<boolean>>;
   setDataCart: React.Dispatch<SetStateAction<OrdersParams[]>>;
   load: boolean;
+  isClosed: boolean;
   totalMoney: string;
   current: any;
   dataCart: OrdersParams[];
@@ -32,6 +34,7 @@ export function DataCompanyContextProvider({ children }: any) {
     {} as AsUserPropsTypes
   );
   const [load, setLoad] = useState(false);
+  const [isClosed, setIsClosed] = useState(false);
   const [dataCart, setDataCart] = useState<OrdersParams[]>([]);
   const { name_company } = useParams<UrlParams>();
   const [totalMoney, setTotalMoney] = useState<string>('0');
@@ -74,6 +77,8 @@ export function DataCompanyContextProvider({ children }: any) {
         setCurrent,
         setTotalMoney,
         totalMoney,
+        isClosed,
+        setIsClosed,
       }}
     >
       {children}
