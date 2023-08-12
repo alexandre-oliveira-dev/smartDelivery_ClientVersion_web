@@ -51,8 +51,9 @@ export default function Header() {
 
   const currentHors = dayjs(new Date()).get('hour');
   const currentMin = dayjs(new Date()).get('minute');
+  console.log(currentMin);
 
-  if (currentHors > parseInt(closeHors) && currentMin > 0) {
+  if (currentHors >= parseInt(closeHors) && currentMin > 0) {
     setIsClosed(true);
   }
   return (
@@ -113,7 +114,7 @@ export default function Header() {
                     </Row>
                   ) : (
                     <Row>
-                      {currentHors > parseInt(closeHors) && currentMin > 0 ? (
+                      {currentHors >= parseInt(closeHors) && currentMin > 0 ? (
                         <Tag color="red" style={{ fontWeight: 'bold' }}>
                           Estamos Fechado no momento Abre amanhâ as:{' '}
                           {
