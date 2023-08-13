@@ -1,9 +1,9 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { Button, Col, Image, Row, Skeleton, Tag, Typography } from 'antd';
 import { createUseStyles } from 'react-jss';
-import { FiHelpCircle } from 'react-icons/fi';
-import { dataCompanyContext } from '../../../../contexts/dataCompany.context';
-import '../../../responsiveApp.css';
+import { FiHelpCircle, FiMenu } from 'react-icons/fi';
+import { dataCompanyContext } from '../../../contexts/dataCompany.context';
+import '../../responsiveApp.css';
 import './pulseAnimation.css';
 import dayjs from 'dayjs';
 
@@ -23,18 +23,53 @@ const styles = createUseStyles({
     display: 'flex',
     justifyContent: 'space-between',
     width: '100%',
+    flexWrap: 'nowrap',
+    alignItems: 'center',
   },
   hiddenNamecompany: {
     '@media(max-width:500px)': {
       display: 'none',
     },
   },
+  responsiveboxmeuspedidosbtn: {
+    display: 'flex',
+    flexWrap: 'nowrap',
+    width: 'max-content',
+    '@media(max-width:500px)': {
+      display: 'none',
+    },
+  },
+  navBarMenuMobile: {
+    display: 'none',
+    '@media(max-width:500px)': {
+      width: '90%',
+      height: '100vh',
+      position: 'fixed',
+      zIndex: '20000',
+      boxShadow: '5px 5px 10px #000',
+    },
+  },
+  btnMenu: {
+    display: 'none',
+    '@media(max-width:500px)': {
+      display: 'block',
+    },
+  },
 });
 export default function Header() {
-  const { header, logo, containerHeader, hiddenNamecompany } = styles();
+  const {
+    header,
+    logo,
+    containerHeader,
+    hiddenNamecompany,
+    responsiveboxmeuspedidosbtn,
+    navBarMenuMobile,
+    btnMenu,
+  } = styles();
   const { dataCompany, load, setIsClosed } = useContext(dataCompanyContext);
   const OrderId = JSON.parse(localStorage.getItem('@OrderId') as any);
   const toDay = dayjs().get('day');
+  const [isOpenNavBarMenu, setIsOpenNavBarMenu] = useState(false);
 
   const indexToday = dataCompany?.daysOfWeeks?.findIndex(
     (item) => item.day.d === toDay
@@ -51,13 +86,40 @@ export default function Header() {
 
   const currentHors = dayjs(new Date()).get('hour');
   const currentMin = dayjs(new Date()).get('minute');
-  console.log(currentMin);
 
   if (currentHors >= parseInt(closeHors) && currentMin > 0) {
     setIsClosed(true);
   }
+
+  const MenuMobile = () => {
+    return (
+      <>
+        <nav
+          className={navBarMenuMobile}
+          style={{
+            background: !dataCompany?.backgroundColor
+              ? '#5B72F2'
+              : dataCompany?.backgroundColor,
+          }}
+        ></nav>
+      </>
+    );
+  };
+
+  const MenuMobileBtn = () => {
+    return (
+      <>
+        <Button type="default" className={btnMenu}>
+          <FiMenu></FiMenu>
+        </Button>
+      </>
+    );
+  };
+
   return (
     <>
+      {isOpenNavBarMenu && <MenuMobile></MenuMobile>}
+
       <header
         style={{
           background: !dataCompany?.backgroundColor
@@ -77,9 +139,15 @@ export default function Header() {
           ></Skeleton>
         ) : (
           <Row className={containerHeader}>
-            <Col>
+            <Col style={{ width: '100%' }}>
               <Row
-                style={{ alignItems: 'center', gap: '20px', height: '100%' }}
+                style={{
+                  alignItems: 'center',
+                  gap: '20px',
+                  height: '100%',
+                  width: '100%',
+                  flexWrap: 'nowrap',
+                }}
               >
                 <Image
                   className={logo}
@@ -138,6 +206,7 @@ export default function Header() {
             </Col>
             <Col>
               <Row
+                className={responsiveboxmeuspedidosbtn}
                 style={{ alignItems: 'center', gap: '10px', height: '100%' }}
               >
                 <Row style={{ position: 'relative' }}>
@@ -179,6 +248,7 @@ export default function Header() {
                   </Button>
                 )}
               </Row>
+              <MenuMobileBtn></MenuMobileBtn>
             </Col>
           </Row>
         )}

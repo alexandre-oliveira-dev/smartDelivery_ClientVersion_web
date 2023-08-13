@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import Header from '../main/components/headerComponent';
+import Header from '../components/headerComponent';
 import { Card, Col, Row, Typography } from 'antd';
 import {
   UrlParams,

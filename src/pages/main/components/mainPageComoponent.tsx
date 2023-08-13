@@ -1,5 +1,5 @@
 import React from 'react';
-import Header from './headerComponent';
+import Header from '../../components/headerComponent';
 import FilterComponent from './filter.component';
 import ContainerMain from './containerMain.component';
 

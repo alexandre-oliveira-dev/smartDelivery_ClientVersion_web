@@ -8,7 +8,7 @@ import {
 import { api } from '../../service/api';
 import { Provider } from 'react-redux';
 import store from '../../store';
-import Header from '../main/components/headerComponent';
+import Header from '../components/headerComponent';
 import { Button, Card, Col, Divider, Row, Spin, Tag, Typography } from 'antd';
 import { PriceFormater } from '../../helpers/priceFormater';
 import dayjs from 'dayjs';
