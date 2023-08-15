@@ -17,11 +17,11 @@ import { api } from '../../service/api';
 import { toast } from 'react-toastify';
 
 export default function FormPaymentComponent() {
-  const { dataCompany, dataCart, totalMoney } = useContext(dataCompanyContext);
+  const { dataCompany, dataCart, totalMoney, isClosed } =
+    useContext(dataCompanyContext);
   const [form] = Form.useForm();
   const [paymentType, setPaymentType] = useState('');
   const [load, setLoad] = useState(false);
-
 
   async function handleCreateOrder() {
     const fieldValues: {
@@ -156,7 +156,7 @@ export default function FormPaymentComponent() {
             </Col>
           </Row>
           <Row>
-            <Button onClick={handleCreateOrder}>
+            <Button disabled={isClosed} onClick={handleCreateOrder}>
               {load ? <Spin></Spin> : 'Finalizar'}
             </Button>
           </Row>

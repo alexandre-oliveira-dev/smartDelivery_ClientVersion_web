@@ -42,17 +42,25 @@ const styles = createUseStyles({
   navBarMenuMobile: {
     display: 'none',
     '@media(max-width:500px)': {
+      display: 'block',
       width: '90%',
       height: '100vh',
       position: 'fixed',
-      zIndex: '20000',
+      zIndex: '50000',
       boxShadow: '5px 5px 10px #000',
     },
   },
   btnMenu: {
     display: 'none',
     '@media(max-width:500px)': {
-      display: 'block',
+      display: 'flex',
+      width: '30px',
+      height: '30px',
+      justifyContent: 'center',
+      alignItems: 'center',
+      padding: 0,
+      border: 0,
+      background: 'transparent',
     },
   },
 });
@@ -84,13 +92,6 @@ export default function Header() {
     2
   ) as string;
 
-  const currentHors = dayjs(new Date()).get('hour');
-  const currentMin = dayjs(new Date()).get('minute');
-
-  if (currentHors >= parseInt(closeHors) && currentMin > 0) {
-    setIsClosed(true);
-  }
-
   const MenuMobile = () => {
     return (
       <>
@@ -101,7 +102,85 @@ export default function Header() {
               ? '#5B72F2'
               : dataCompany?.backgroundColor,
           }}
-        ></nav>
+        >
+          <Row
+            style={{
+              width: '100%',
+              justifyContent: 'flex-end',
+              padding: '20px 20px 0 0',
+            }}
+          >
+            <button
+              style={{
+                background: 'transparent',
+                color: '#fff',
+                fontSize: '20px',
+              }}
+              onClick={() => setIsOpenNavBarMenu(false)}
+            >
+              X
+            </button>
+          </Row>
+          <Row
+            style={{
+              width: '100%',
+              justifyContent: 'center',
+            }}
+          >
+            <Col
+              style={{
+                display: 'flex',
+                flexDirection: 'column',
+                alignItems: 'center',
+              }}
+            >
+              <Image
+                preview={false}
+                className={logo}
+                src={
+                  dataCompany?.imgProfile
+                    ? dataCompany?.imgProfile
+                    : 'https://via.placeholder.com/150'
+                }
+                alt=""
+              ></Image>
+              <Typography.Title
+                onClick={() =>
+                  (window.location.href = `/${dataCompany?.name_company}`)
+                }
+                style={{ color: '#fff', cursor: 'pointer' }}
+                level={3}
+              >
+                {dataCompany?.name_company}
+              </Typography.Title>
+            </Col>
+          </Row>
+          <Row
+            style={{
+              position: 'absolute',
+              transform: 'translate(-50%, -50%)',
+              left: '50%',
+              top: '50%',
+            }}
+          >
+            <Col>
+              <Button
+                style={{ color: '#fff', fontSize: '20px' }}
+                type="link"
+                href={`/${dataCompany?.name_company}`}
+              >
+                Meus Pedidos
+              </Button>
+              <Button
+                style={{ color: '#fff', fontSize: '20px' }}
+                type="link"
+                href=""
+              >
+                Ajuda
+              </Button>
+            </Col>
+          </Row>
+        </nav>
       </>
     );
   };
@@ -109,16 +188,26 @@ export default function Header() {
   const MenuMobileBtn = () => {
     return (
       <>
-        <Button type="default" className={btnMenu}>
-          <FiMenu></FiMenu>
+        <Button
+          type="default"
+          className={btnMenu}
+          onClick={() => setIsOpenNavBarMenu(true)}
+        >
+          <FiMenu color="#fff" size={20}></FiMenu>
         </Button>
       </>
     );
   };
+  const currentHors = dayjs(new Date()).get('hour');
+  const currentMin = dayjs(new Date()).get('minute');
+
+  if (currentHors >= parseInt(closeHors) && currentMin > 0) {
+    setIsClosed(true);
+  }
 
   return (
     <>
-      {isOpenNavBarMenu && <MenuMobile></MenuMobile>}
+      {isOpenNavBarMenu === true && <MenuMobile></MenuMobile>}
 
       <header
         style={{
@@ -176,14 +265,20 @@ export default function Header() {
                     <Row style={{ gap: '10px', alignItems: 'center' }}>
                       {' '}
                       <span className="pulse"></span>
-                      <Tag color="green" style={{ fontWeight: 'bold' }}>
+                      <Tag
+                        color="green"
+                        style={{ fontWeight: 'bold', whiteSpace: 'normal' }}
+                      >
                         Estamos abertos!
                       </Tag>
                     </Row>
                   ) : (
                     <Row>
                       {currentHors >= parseInt(closeHors) && currentMin > 0 ? (
-                        <Tag color="red" style={{ fontWeight: 'bold' }}>
+                        <Tag
+                          color="red"
+                          style={{ fontWeight: 'bold', whiteSpace: 'normal' }}
+                        >
                           Estamos Fechado no momento Abre amanhâ as:{' '}
                           {
                             dataCompany?.daysOfWeeks?.[
@@ -192,12 +287,30 @@ export default function Header() {
                           }
                         </Tag>
                       ) : currentHors < parseInt(openHors) ? (
-                        <Tag color="red" style={{ fontWeight: 'bold' }}>
+                        <Tag
+                          color="red"
+                          style={{ fontWeight: 'bold', whiteSpace: 'normal' }}
+                        >
                           Estamos Fechado no momento Abriremos as:{' '}
                           {dataCompany?.daysOfWeeks?.[indexToday]?.open}
                         </Tag>
                       ) : (
-                        ''
+                        !dataCompany?.daysOfWeeks?.[indexToday]?.day?.d &&
+                        !dataCompany?.daysOfWeeks?.[indexToday]?.day?.name && (
+                          <Tag
+                            color="red"
+                            style={{ fontWeight: 'bold', whiteSpace: 'normal' }}
+                          >
+                            Estamos Fechado no momento Abre amanhâ as:
+                            {dataCompany?.daysOfWeeks?.[indexToday + 1]?.day
+                              ?.d &&
+                              dataCompany?.daysOfWeeks?.[indexToday + 1]?.day
+                                ?.name &&
+                              dataCompany?.daysOfWeeks?.[
+                                indexToday === 6 ? 0 : indexToday + 1
+                              ]?.open}
+                          </Tag>
+                        )
                       )}
                     </Row>
                   )}
