@@ -53,7 +53,10 @@ export default function OrdersComponent() {
       .put(`/orders/${id}`, {
         status: 'finalizado',
       })
-      .then(() => setLoad(false));
+      .then(() => {
+        setLoad(false);
+        localStorage.removeItem('@OrderId');
+      });
   }
 
   return (
