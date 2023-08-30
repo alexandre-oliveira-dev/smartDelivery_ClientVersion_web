@@ -30,6 +30,7 @@ export default function FormPaymentComponent() {
       email: string;
       address: string;
       paymentMethod: string;
+      cash: string;
     } = form.getFieldsValue();
 
     if (
@@ -53,6 +54,7 @@ export default function FormPaymentComponent() {
       toast.info('Envie o comprovante para realizar o pedido!');
       return;
     }
+
     setLoad(true);
     await api
       .post('/clients', {
@@ -73,6 +75,9 @@ export default function FormPaymentComponent() {
             order: dataCart.map((item) => item.order),
             paymentVoucher: '',
             amount: String(dataCart.length),
+            /* details: fieldValues.cash
+              ? 'Preciso de troco para: ' + fieldValues?.cash
+              : null, */
           })
           .then((data) => {
             setLoad(false);
@@ -149,10 +154,20 @@ export default function FormPaymentComponent() {
                 </Select>
               </FormItem>
               {paymentType === 'pix' || paymentType === 'Pix' ? (
-                <PixInformations></PixInformations>
+                <PixInformations
+                  name={form.getFieldValue('name')}
+                ></PixInformations>
               ) : (
                 ''
               )}
+              {/* {paymentType === 'Dinheiro' ? (
+                <FormItem name={'cash'}>
+                  <label>Precisa de troco?</label>
+                  <Input placeholder="Troco para quantos?"></Input>
+                </FormItem>
+              ) : (
+                ''
+              )} */}
             </Col>
           </Row>
           <Row>

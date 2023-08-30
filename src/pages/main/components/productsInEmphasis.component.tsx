@@ -67,12 +67,12 @@ export default function ProductInEmphasisComponent() {
                       </Row>
                       <Row>
                         <Typography.Text style={{ color: 'silver' }}>
-                          {item.amount}
+                          peso: {item.weight}
                         </Typography.Text>
                       </Row>
                       <Row>
                         <Typography.Text style={{ color: 'silver' }}>
-                          serve até {item.weight} pessoa(s)
+                          serve até {item.amount} pessoa(s)
                         </Typography.Text>
                       </Row>
                       <Row>
