@@ -1,13 +1,13 @@
 import React from 'react';
 import Header from '../../components/headerComponent';
-import FilterComponent from './filter.component';
-import ContainerMain from './containerMain.component';
+/* import FilterComponent from './filter.component';
+ */ import ContainerMain from './containerMain.component';
 
 export default function MainPageComponent() {
   return (
     <>
       <Header></Header>
-      <FilterComponent></FilterComponent>
+      {/* <FilterComponent></FilterComponent> */}
       <ContainerMain></ContainerMain>
     </>
   );

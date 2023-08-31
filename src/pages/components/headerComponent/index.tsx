@@ -204,6 +204,7 @@ export default function Header() {
   if (currentHors >= parseInt(closeHors) && currentMin > 0) {
     setIsClosed(true);
   }
+  const message = `Olá, preciso de ajuda!`;
 
   return (
     <>
@@ -339,6 +340,9 @@ export default function Header() {
                       alignContent: 'center',
                       gap: '10px',
                     }}
+                    onClick={() =>
+                      (window.location.href = `https://wa.me/55${dataCompany?.phone}?text=${message}`)
+                    }
                   >
                     <Row>
                       <Typography.Text> Ajuda</Typography.Text>
