@@ -327,7 +327,10 @@ export default function Header() {
                   <Typography.Link
                     className="responsivemeusPedidosBtn"
                     style={{ color: '#fff' }}
-                    href={`/${dataCompany?.name_company}/meusPedidos/${OrderId}`}
+                    href={
+                      OrderId &&
+                      `/${dataCompany?.name_company}/meusPedidos/${OrderId}`
+                    }
                   >
                     Meus pedidos
                   </Typography.Link>

@@ -36,9 +36,9 @@ export default function ButtonCart() {
         }
         className={buttonCart}
         style={{
-          background: !dataCompany.backgroundColor
+          background: !dataCompany?.backgroundColor
             ? '#5b72f2'
-            : dataCompany.backgroundColor,
+            : dataCompany?.backgroundColor,
         }}
       >
         <Typography.Text style={{ color: '#fff', fontSize: '20px' }}>

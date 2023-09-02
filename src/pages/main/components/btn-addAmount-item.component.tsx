@@ -2,8 +2,7 @@ import { Row } from 'antd';
 import React, { useContext, useEffect, useState } from 'react';
 import { createUseStyles } from 'react-jss';
 import { dataCompanyContext } from '../../../contexts/dataCompany.context';
-const { useDispatch } = require('react-redux');
-
+import { useDispatch } from 'react-redux';
 const style = createUseStyles({
   btnamount: {
     width: '20px',

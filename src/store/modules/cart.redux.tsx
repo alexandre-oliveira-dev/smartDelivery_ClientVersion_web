@@ -28,7 +28,6 @@ export default function Cart(
         item: action.item?.title,
         qtd: 0,
       },
-    
     address: '',
     amount: Number(action?.item?.amount),
     amoutMoney: parseFloat(action?.item?.price),

@@ -2,7 +2,7 @@ import React from 'react';
 import MainPageComponent from './components/mainPageComoponent';
 import { DataCompanyContextProvider } from '../../contexts/dataCompany.context';
 import store from '../../store';
-const { Provider } = require('react-redux');
+import { Provider } from 'react-redux';
 
 export default function MainPageComponentIndex() {
   return (
