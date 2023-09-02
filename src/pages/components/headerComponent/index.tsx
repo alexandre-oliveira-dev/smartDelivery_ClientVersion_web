@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import { useContext, useState } from 'react';
 import { Button, Col, Image, Row, Skeleton, Tag, Typography } from 'antd';
 import { createUseStyles } from 'react-jss';
 import { FiHelpCircle, FiMenu } from 'react-icons/fi';

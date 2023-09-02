@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { Divider, Row, Typography } from 'antd';
 import React, { useContext } from 'react';
 import { createUseStyles } from 'react-jss';
@@ -6,7 +7,6 @@ import ProductInEmphasisComponent from './productsInEmphasis.component';
 import TabCategoria from './tabs-categorias';
 import '../../responsiveApp.css';
 import ButtonCart from '../../common/buttonCartComponent';
-import dayjs from 'dayjs';
 
 const styles = createUseStyles({
   container: {

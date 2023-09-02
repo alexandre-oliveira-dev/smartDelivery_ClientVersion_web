@@ -1,10 +1,10 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { Button, Col, Row, Typography } from 'antd';
 import React, { useContext } from 'react';
 import { dataCompanyContext } from '../../contexts/dataCompany.context';
 import { MdPix } from 'react-icons/md';
 import { FiKey } from 'react-icons/fi';
 import { IoLogoWhatsapp } from 'react-icons/io';
-import { Link } from 'react-router-dom';
 
 interface MessageProps {
   name: string;

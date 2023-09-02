@@ -1,9 +1,4 @@
-import React, {
-  useState,
-  createContext,
-  useEffect,
-  SetStateAction,
-} from 'react';
+import { useState, createContext, useEffect, SetStateAction } from 'react';
 import { useParams } from 'react-router-dom';
 import { OrdersParams } from '../store/modules/cart.redux';
 import { api } from '../service/api';

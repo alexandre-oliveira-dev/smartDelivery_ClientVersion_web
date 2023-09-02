@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import { useContext } from 'react';
 import { Button, Card, Col, Divider, Row, Typography } from 'antd';
 import { dataCompanyContext } from '../../contexts/dataCompany.context';
 import { createUseStyles } from 'react-jss';
@@ -7,7 +7,7 @@ import { PriceFormater } from '../../helpers/priceFormater';
 import { FiArrowLeft, FiShoppingCart, FiTrash } from 'react-icons/fi';
 import FormPaymentComponent from './formPayment.component';
 import { useHistory } from 'react-router-dom';
-import '../responsiveApp.css'
+import '../responsiveApp.css';
 
 const styles = createUseStyles({
   container: {
@@ -26,9 +26,7 @@ const styles = createUseStyles({
     width: '100% !important',
     marginTop: '10px',
     transition: '0.3s ease',
-    '@media(max-width:500px)': {
-      
-    }
+    '@media(max-width:500px)': {},
   },
   contentCard: {
     width: '100% !important',
@@ -36,11 +34,11 @@ const styles = createUseStyles({
     alignItems: 'center',
     height: '50px',
     '@media(max-width:500px)': {
-      height: "auto",
-      flexDirection: "column",
-      alignItems: "start",
-      gap:"10px"
-    }
+      height: 'auto',
+      flexDirection: 'column',
+      alignItems: 'start',
+      gap: '10px',
+    },
   },
   cardTotal: {
     width: '100% !important',

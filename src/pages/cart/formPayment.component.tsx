@@ -10,7 +10,7 @@ import {
   Typography,
 } from 'antd';
 import FormItem from 'antd/es/form/FormItem';
-import React, { useContext, useState } from 'react';
+import { useContext, useState } from 'react';
 import { dataCompanyContext } from '../../contexts/dataCompany.context';
 import PixInformations from './pixInformations.component';
 import { api } from '../../service/api';

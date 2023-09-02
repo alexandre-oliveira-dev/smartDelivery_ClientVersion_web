@@ -1,8 +1,7 @@
-import React from "react";
-import { Route, Switch } from "react-router-dom";
-import MainPageComponentIndex from "../pages/main";
+import { Route, Switch } from 'react-router-dom';
+import MainPageComponentIndex from '../pages/main';
 import Cart from '../pages/cart';
-import DetailsPage from "../pages/itemDetails";
+import DetailsPage from '../pages/itemDetails';
 
 export default function RouterApp() {
   return (

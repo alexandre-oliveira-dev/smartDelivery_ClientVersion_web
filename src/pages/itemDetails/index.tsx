@@ -1,4 +1,3 @@
-import React from 'react';
 import { DataCompanyContextProvider } from '../../contexts/dataCompany.context';
 import DetailsComponent from './details.component';
 import { Provider } from 'react-redux';

@@ -1,5 +1,5 @@
 import { Card, Col, Row, Typography } from 'antd';
-import React, { useContext, useMemo } from 'react';
+import { useContext, useMemo } from 'react';
 import { dataCompanyContext } from '../../../../contexts/dataCompany.context';
 import { createUseStyles } from 'react-jss';
 import BtnAddAmountItem from '../btn-addAmount-item.component';

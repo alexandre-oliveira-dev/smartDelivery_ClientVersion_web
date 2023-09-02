@@ -1,4 +1,3 @@
-import React from 'react';
 import CartComponent from './cart.component';
 import { DataCompanyContextProvider } from '../../contexts/dataCompany.context';
 import Header from '../components/headerComponent';

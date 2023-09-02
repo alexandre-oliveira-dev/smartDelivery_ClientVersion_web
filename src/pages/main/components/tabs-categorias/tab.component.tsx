@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import { useContext } from 'react';
 import { dataCompanyContext } from '../../../../contexts/dataCompany.context';
 import { createUseStyles } from 'react-jss';
 import { Col, Row, Typography } from 'antd';
