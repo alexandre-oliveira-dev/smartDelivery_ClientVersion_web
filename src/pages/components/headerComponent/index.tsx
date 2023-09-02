@@ -6,6 +6,7 @@ import { dataCompanyContext } from '../../../contexts/dataCompany.context';
 import '../../responsiveApp.css';
 import './pulseAnimation.css';
 import dayjs from 'dayjs';
+import React from 'react';
 
 const styles = createUseStyles({
   header: {
