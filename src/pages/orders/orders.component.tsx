@@ -5,7 +5,7 @@ import {
   UrlParams,
   dataCompanyContext,
 } from '../../contexts/dataCompany.context';
-import { api } from '../../service/api';
+import { api } from '../../../../../src/services/api';
 import { Provider } from 'react-redux';
 import store from '../../store';
 import Header from '../components/headerComponent';
@@ -13,6 +13,7 @@ import { Button, Card, Col, Divider, Row, Spin, Tag, Typography } from 'antd';
 import { PriceFormater } from '../../helpers/priceFormater';
 import dayjs from 'dayjs';
 import { BiTimeFive } from 'react-icons/bi';
+import React from 'react';
 
 type OrderType = {
   address: string;

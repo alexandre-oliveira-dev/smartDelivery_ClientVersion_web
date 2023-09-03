@@ -3,6 +3,7 @@ import { dataCompanyContext } from '../../contexts/dataCompany.context';
 import { createUseStyles } from 'react-jss';
 import { Row, Typography } from 'antd';
 import { FiShoppingCart } from 'react-icons/fi';
+import React from 'react';
 
 const style = createUseStyles({
   buttonCart: {

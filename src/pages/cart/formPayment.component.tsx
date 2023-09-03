@@ -13,8 +13,9 @@ import FormItem from 'antd/es/form/FormItem';
 import { useContext, useState } from 'react';
 import { dataCompanyContext } from '../../contexts/dataCompany.context';
 import PixInformations from './pixInformations.component';
-import { api } from '../../service/api';
 import { toast } from 'react-toastify';
+import React from 'react';
+import { api } from '../../../../../src/services/api';
 
 export default function FormPaymentComponent() {
   const { dataCompany, dataCart, totalMoney, isClosed } =

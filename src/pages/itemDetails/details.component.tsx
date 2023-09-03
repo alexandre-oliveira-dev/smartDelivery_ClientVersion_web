@@ -13,6 +13,7 @@ import { PriceFormater } from '../../helpers/priceFormater';
 import ProductInEmphasisComponent from '../main/components/productsInEmphasis.component';
 import { FiArrowLeft } from 'react-icons/fi';
 import ButtonCart from '../common/buttonCartComponent';
+import React from 'react';
 
 const styles = createUseStyles({
   card: {

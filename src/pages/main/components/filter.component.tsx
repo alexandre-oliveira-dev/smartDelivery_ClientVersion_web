@@ -4,6 +4,7 @@ import { createUseStyles } from 'react-jss';
 import { dataCompanyContext } from '../../../contexts/dataCompany.context';
 import { FiSearch } from 'react-icons/fi';
 import '../../responsiveApp.css';
+import React from 'react';
 
 const styles = createUseStyles({
   container: {

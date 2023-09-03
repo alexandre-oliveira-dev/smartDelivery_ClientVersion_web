@@ -5,6 +5,7 @@ import { dataCompanyContext } from '../../../contexts/dataCompany.context';
 import BtnAddAmountItem from './btn-addAmount-item.component';
 import { PriceFormater } from '../../../helpers/priceFormater';
 import '../../responsiveApp.css';
+import React from 'react';
 
 const styles = createUseStyles({
   container: {

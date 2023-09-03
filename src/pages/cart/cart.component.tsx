@@ -8,6 +8,7 @@ import { FiArrowLeft, FiShoppingCart, FiTrash } from 'react-icons/fi';
 import FormPaymentComponent from './formPayment.component';
 import { useHistory } from 'react-router-dom';
 import '../responsiveApp.css';
+import React from 'react';
 
 const styles = createUseStyles({
   container: {

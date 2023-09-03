@@ -6,6 +6,7 @@ import BtnAddAmountItem from '../btn-addAmount-item.component';
 import Tab from './tab.component';
 import { PriceFormater } from '../../../../helpers/priceFormater';
 import '../../../responsiveApp.css';
+import React from 'react';
 
 const style = createUseStyles({
   card: {

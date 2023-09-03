@@ -3,6 +3,7 @@ import { dataCompanyContext } from '../../../../contexts/dataCompany.context';
 import { createUseStyles } from 'react-jss';
 import { Col, Row, Typography } from 'antd';
 import '../../../responsiveApp.css';
+import React from 'react';
 
 const style = createUseStyles({
   tab: {
