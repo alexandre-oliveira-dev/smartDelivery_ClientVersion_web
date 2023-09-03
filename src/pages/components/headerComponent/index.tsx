@@ -202,7 +202,10 @@ export default function Header() {
   const currentHors = dayjs(new Date()).get('hour');
   const currentMin = dayjs(new Date()).get('minute');
 
-  if (currentHors >= parseInt(closeHors) && currentMin > 0) {
+  if (
+    currentHors >= parseInt(closeHors) ||
+    (currentHors < parseInt(openHors) && currentMin > 0)
+  ) {
     setIsClosed(true);
   }
   const message = `Olá, preciso de ajuda!`;
