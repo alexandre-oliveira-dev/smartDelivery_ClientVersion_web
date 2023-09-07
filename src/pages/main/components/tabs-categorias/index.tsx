@@ -18,7 +18,6 @@ const style = createUseStyles({
     width: '100% !important',
     justifyContent: 'space-between',
     alignItems: 'center',
-    height: '50px',
     '@media(max-width:500px)': {
       height: 'auto',
     },
